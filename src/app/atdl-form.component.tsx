@@ -9,19 +9,18 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-//import React, {StrictMode} from 'react';
 import {Provider} from 'react-redux'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AtdlForm } from '../components/AtdlForm';
-import {store} from '../redux'
+import { AtdlForm } from './components/AtdlForm';
+import {store} from './redux'
 
 const containerElementName = 'customReactComponentContainer';
 
 @Component({
   selector: 'app-atdl-form',
   template: `<span #${containerElementName}></span>`,
-  // styleUrls: [''],
+  styleUrls: ['./components/styles.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class AtdlFormComponent implements OnChanges, OnDestroy, AfterViewInit {
@@ -40,7 +39,6 @@ export class AtdlFormComponent implements OnChanges, OnDestroy, AfterViewInit {
         let xml = await response.text()
         let parser = new DOMParser()
         this._document = await parser.parseFromString(xml, 'application/xml')
-        //setDocument(document)
         this.render();
       }
     })
@@ -50,7 +48,6 @@ export class AtdlFormComponent implements OnChanges, OnDestroy, AfterViewInit {
       ReactDOM.unmountComponentAtNode(this.containerRef.nativeElement);
   }
 
-  //<AtdlForm document={document} strategyName={strategyName} standardFixFields={standardFixFields}/>
   private render() {
     if (this._document) {
       this._standardFixFields = {};
