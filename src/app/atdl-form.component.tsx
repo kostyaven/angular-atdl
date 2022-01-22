@@ -33,7 +33,7 @@ export class AtdlFormComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    fetch('/sample/strategy.xml').then(async response => {
+    fetch('samples/strategy.xml').then(async response => {
       if (response.ok) {
         let xml = await response.text()
         let parser = new DOMParser()
