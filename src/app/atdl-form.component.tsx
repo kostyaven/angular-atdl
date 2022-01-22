@@ -10,9 +10,11 @@ import {
 } from '@angular/core';
 
 //import React, {StrictMode} from 'react';
+import {Provider} from 'react-redux'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AtdlForm } from '../components/AtdlForm';
+import {store} from '../redux'
 
 const containerElementName = 'customReactComponentContainer';
 
@@ -50,14 +52,16 @@ export class AtdlFormComponent implements OnChanges, OnDestroy, AfterViewInit {
 
   //<AtdlForm document={document} strategyName={strategyName} standardFixFields={standardFixFields}/>
   private render() {
-    if (document) {
-      let strategyName = this._document.querySelectorAll('Strategy')[0].getAttribute('name')!
+    if (this._document) {
+      this._standardFixFields = {};
+      let strategyName = this._document.querySelectorAll('Strategy')[0].getAttribute('name')!;
       ReactDOM.render(
         <React.StrictMode>
+          <Provider store={store}>
             <div>
-              <AtdlForm document={document} strategyName={strategyName} standardFixFields={this._standardFixFields}/>
-              <label>Test</label>
+              <AtdlForm document={this._document} strategyName={strategyName} standardFixFields={this._standardFixFields}/>
             </div>
+            </Provider>
         </React.StrictMode>,
         this.containerRef.nativeElement);
       }
