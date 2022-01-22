@@ -1,0 +1,78 @@
+.StrategyPanel {
+
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+
+  &[orientation=HORIZONTAL] {
+    flex-direction: row;
+
+    & > * {
+      margin-left: 1em;
+
+      &:first-child {
+        margin-left: unset;
+      }
+    }
+  }
+
+  &[orientation=VERTICAL] {
+    flex-direction: column;
+
+    & > * {
+      margin-top: 1em;
+
+      &:first-child {
+        margin-top: unset;
+      }
+    }
+  }
+
+  &[border=LINE] {
+    border: 1px solid lightgray;
+  }
+
+  &[border=NONE] {
+    border: none;
+  }
+
+  > * {
+    flex: 1 1 0;
+  }
+}
+
+.Control {
+
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+
+  .label {
+    white-space: nowrap;
+    font-weight: bold;
+    padding: .5em;
+  }
+}
+
+.DropDownList {
+
+  .ant-select {
+    flex: 1 1 auto;
+  }
+}
+
+.CheckBox {
+
+  padding: 4px 8px;
+
+  .ant-checkbox {
+
+  }
+}
+
+.Clock.Control {
+  .ant-picker {
+    flex: 1 1 auto;
+  }
+}
+
